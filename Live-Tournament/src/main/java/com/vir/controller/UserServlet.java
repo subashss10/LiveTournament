@@ -18,7 +18,7 @@ import com.vir.model.User;
 public class UserServlet extends HttpServlet{
 	
 //	private UserService ser = new UserService();
-	
+	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson();
 	
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException
@@ -39,6 +39,9 @@ public class UserServlet extends HttpServlet{
 		String userJSON = gson.toJson(user);
 		
 		PrintWriter out = response.getWriter();
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, POST");
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.print(userJSON);

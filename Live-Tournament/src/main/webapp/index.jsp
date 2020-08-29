@@ -23,6 +23,7 @@
 
 <script type="text/javascript">
 		function onSignIn(googleUser) {
+			//alert('test');
 		// window.location.href='success.jsp';
 			  var profile = googleUser.getBasicProfile();
 			  //var profile = auth2.currentUser.get().getBasicProfile();
@@ -30,23 +31,27 @@
 			  var name=profile.getName();
 			  var email=profile.getEmail();
 			  var givenName = profile.getGivenName ();
-			  window.familyName = profile.getFamilyName ();
+			  window.familyName = profile.getFamilyName();
 			  var id_token =  googleUser.getAuthResponse().id_token
+			  localStorage.setItem("Token", id_token);
+			  //alert(id_token);
 			  document.getElementById("myImg").src = imagurl;
 			  document.getElementById("name").innerHTML = name;
 			  
-			  var url = '<a href="data.jsp?email='+email+'&name='+name+'&givenName='+givenName+'&familyName='+familyName+'">Continue with Google login</a>'
+			  //window.location.replace("http://localhost:3000/");
+			  
+ 			  var url = '<a href="data.jsp?email='+email+'&name='+name+'&givenName='+givenName+'&familyName='+familyName+'">Continue with Google login</a>'
 			  document.getElementById("myP").style.visibility = "hidden";
 			  
 			  document.getElementById("status").innerHTML = 'Welcome '+name+'!' + url
 			  
-			  /* var redirectUrl = 'login';
-			  var form = $('<form action="' + redirectUrl + '" method="post">' +
-                      '<input type="text" name="id_token" value="' +
-                       googleUser.getAuthResponse().id_token + '" />' +
-                                                            '</form>');
-     $('body').append(form);
-     form.submit(); */
+ 			  /*var redirectUrl = 'data';
+ 			  var form = $('<form action="' + redirectUrl + '" method="post">' +
+                       '<input type="text" name="id_token" value="' +
+                        googleUser.getAuthResponse().id_token + '" />' +
+                                                             '</form>');
+      $('body').append(form);
+      form.submit(); */
 			  
 			  }
 </script>

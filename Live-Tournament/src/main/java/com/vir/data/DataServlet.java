@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.vir.model.User;
+import com.vir.tokenVerifier.IdTokenVerifierAndParser;
 
 
 
@@ -32,14 +34,26 @@ public class DataServlet extends HttpServlet {
 
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
 	{
-		String name = (String) req.getAttribute("name");
-		String givenName = (String) req.getAttribute("givenName");
-		String familyName = (String) req.getAttribute("familyName");
-		String email = (String) req.getAttribute("email");
+		
+		
+		
+		
+		
 		
 		
 		PrintWriter out = res.getWriter();
 		try {
+//			String idToken = req.getParameter("id_token");
+//	        GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);
+//	        String name = (String) payLoad.get("name");
+//	        String givenName = (String) payLoad.get("givenName");
+//	        String familyName = (String) payLoad.get("familyName");
+//	        String email = payLoad.getEmail();
+	        
+			String name = (String) req.getAttribute("name");
+			String givenName = (String) req.getAttribute("givenName");
+			String familyName = (String) req.getAttribute("familyName");
+			String email = (String) req.getAttribute("email");
 		    Class.forName("com.mysql.jdbc.Driver");
 		    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/subash", "root", "test123$");
 		    Calendar calendar = Calendar.getInstance();
@@ -53,7 +67,7 @@ public class DataServlet extends HttpServlet {
 			ResultSet rs = stmt.executeQuery(updateQuery);
 		    int userId = 0;
 			if(rs.next())
-			{
+			 {
 
 				//System.out.println(updateValues);
 			   
@@ -115,8 +129,8 @@ public class DataServlet extends HttpServlet {
 	    	RequestDispatcher rd  = req.getRequestDispatcher("users");
 	    	rd.forward(req,res); 
 		  }
-		  catch (SQLException | ClassNotFoundException e) {
-			  out.println("SQLException caught: " +e.getMessage());
+		  catch (Exception e) {
+			  out.println("Exception: " +e.getMessage());
 		} 
 		
 		
