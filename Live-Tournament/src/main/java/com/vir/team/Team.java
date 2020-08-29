@@ -33,15 +33,17 @@ public class Team extends HttpServlet {
 		public int Id;
 		public String TeamName;
 		public String TeamDescription;
+		public String LogoPath;
 		public int CreatedBy;
 		public Date CreatedOn;
 		public boolean isDeleted;
 		
-		public TeamModel(int Id,String TeamName, String TeamDescription,int CreatedBy, Date CreatedOn,boolean isDeleted)
+		public TeamModel(int Id,String TeamName, String TeamDescription, String LogoPath,int CreatedBy, Date CreatedOn,boolean isDeleted)
 		{
 			this.Id = Id;
 			this.TeamName = TeamName;
 			this.TeamDescription = TeamDescription;
+			this.LogoPath = LogoPath;
 			this.CreatedBy = CreatedBy;
 			this.CreatedOn = CreatedOn;
 			this.isDeleted = isDeleted;
@@ -101,7 +103,7 @@ public class Team extends HttpServlet {
 
 		if(pathInfo == null || pathInfo.equals("/")){
 			
-			String getQuery = "SELECT Id, TeamName, TeamDescription, CreatedBy, CreatedOn FROM tbl_team where isDeleted = 0";
+			String getQuery = "SELECT Id, TeamName, TeamDescription, LogoPath, CreatedBy, CreatedOn FROM tbl_team where isDeleted = 0";
 				
 			// execute the query, and get a java resultset
 		    ResultSet rs = st.executeQuery(getQuery);
@@ -113,12 +115,13 @@ public class Team extends HttpServlet {
 		        int Id = rs.getInt("Id");
 		        String TeamName = rs.getString("TeamName");
 		        String TeamDescription = rs.getString("TeamDescription");
+		        String LogoPath = rs.getString("LogoPath");
 		        int CreatedBy = rs.getInt("CreatedBy");
 		        Date CreatedOn = rs.getTimestamp("CreatedOn");
 		        boolean isDeleted = false;
 		        
 		        //System.out.format("%d, %s, %s, %d, %s\n",Id, TeamName, TeamDescription, CreatedBy, CreatedOn);
-		        team = new TeamModel(Id, TeamName, TeamDescription, CreatedBy, CreatedOn,isDeleted);
+		        team = new TeamModel(Id, TeamName, TeamDescription, LogoPath, CreatedBy, CreatedOn,isDeleted);
 		        teamList.add(team);
 		        
 		        
@@ -138,17 +141,18 @@ public class Team extends HttpServlet {
 		}
 
 		String Id = splits[1];
-		String IdQuery = "Select Id, TeamName, TeamDescription, CreatedBy, CreatedOn from tbl_team where Id = '"+Id+"' and isDeleted = 0";
+		String IdQuery = "Select Id, TeamName, TeamDescription, LogoPath, CreatedBy, CreatedOn from tbl_team where Id = '"+Id+"' and isDeleted = 0";
 		ResultSet rs = st.executeQuery(IdQuery);
 		while (rs.next())
 	    {
 	        
 	        String TeamName = rs.getString("TeamName");
 	        String TeamDescription = rs.getString("TeamDescription");
+	        String LogoPath = rs.getString("LogoPath");
 	        Date CreatedOn = rs.getDate("CreatedOn");
 	        int CreatedBy = rs.getInt("CreatedBy");
 	        boolean isDeleted = false;
-	        team = new TeamModel(Integer.parseInt(Id), TeamName, TeamDescription, CreatedBy, CreatedOn,isDeleted);
+	        team = new TeamModel(Integer.parseInt(Id), TeamName, TeamDescription, LogoPath, CreatedBy, CreatedOn,isDeleted);
 	        
 	        
 	    }
@@ -292,10 +296,11 @@ public class Team extends HttpServlet {
 	        
 	        String TeamName = rs.getString("TeamName");
 	        String TeamDescription = rs.getString("TeamDescription");
+	        String LogoPath = rs.getString("LogoPath");
 	        Date CreatedOn = rs.getDate("CreatedOn");
 	        int CreatedBy = rs.getInt("CreatedBy");
 	        boolean isDeleted = rs.getBoolean("isDeleted");
-	        team = new TeamModel(Integer.parseInt(Id), TeamName, TeamDescription, CreatedBy, CreatedOn,isDeleted);
+	        team = new TeamModel(Integer.parseInt(Id), TeamName, TeamDescription, LogoPath, CreatedBy, CreatedOn,isDeleted);
 	        
 	        
 	    }
