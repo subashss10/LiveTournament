@@ -5,6 +5,7 @@ import { Form,FormControl, Button, Jumbotron,Container,Image,Row,Col} from 'reac
 import './MyTeam.scss';
 import GetPlayers from '../GetPlayers/GetPlayers';
 import NewPlayer from '../NewPlayer/NewPlayer';
+import Jumbo from '../../images/countries/india.png'
 
 class MyTeam extends React.Component {
     constructor(props) {
@@ -88,7 +89,7 @@ class MyTeam extends React.Component {
                     <Jumbotron> 
                         <Container>
                             <Row>
-                                <Col xs={11}>
+                                <Col xs={9}>
                                     <Form.Label column sm="2" className='label'>Team Name</Form.Label>
                                     <FormControl className="teaminput"
                                         onChange={(e) => this.updateTeamName(e)}
@@ -109,8 +110,8 @@ class MyTeam extends React.Component {
                                     <Button variant="success"><Link to='/' className="link">Back</Link></Button>{' '}
                                     {/* <h1>{this.state.team.Id}</h1> */}
                                 </Col>
-                                <Col xs={1}>
-                                    <Image src="D:/Projects/ReactJs/my-app/src/images/countries/india.png" rounded />
+                                <Col xs={3}>
+                                    <Image className="teamimg" src={'./images/countries/' + this.state.team.LogoPath} rounded />
                                 </Col>
                             </Row>
                         </Container>
