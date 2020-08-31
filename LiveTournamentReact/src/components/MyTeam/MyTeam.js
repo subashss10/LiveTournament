@@ -5,7 +5,6 @@ import { Form,FormControl, Button, Jumbotron,Container,Image,Row,Col} from 'reac
 import './MyTeam.scss';
 import GetPlayers from '../GetPlayers/GetPlayers';
 import NewPlayer from '../NewPlayer/NewPlayer';
-import Jumbo from '../../images/countries/india.png'
 
 class MyTeam extends React.Component {
     constructor(props) {

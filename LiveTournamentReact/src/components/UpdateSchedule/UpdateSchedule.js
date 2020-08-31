@@ -4,7 +4,7 @@ import { Link } from '@version/react-router-v3';
 import { FormControl, Button, Jumbotron, Form, Container } from 'react-bootstrap';
 import '../MyTeam/MyTeam.scss';
 
-class Schedule extends React.Component {
+class UpdateSchedule extends React.Component {
     constructor(props) {
         super(props);
         this.InsertDate = this.InsertDate.bind(this);
@@ -29,9 +29,9 @@ class Schedule extends React.Component {
         this.setState({ schedule: temp });
     }
 
-    InsertMatchType(e) {
+    InsertMatchTypeId(e) {
         console.log(e.target.value);
-        let temp = { ...this.state.schedule, MatchType: e.target.value };
+        let temp = { ...this.state.schedule, MatchTypeId: e.target.value };
         console.log(temp);
         this.setState({ schedule: temp });
     }
@@ -98,7 +98,7 @@ class Schedule extends React.Component {
                 <Form.Label>Enter Match Type</Form.Label>
                 <FormControl className="scheduleinput"
                     onChange={(e) => this.InsertMatchType(e)}
-                    value={this.state.player.TeamName}
+                    value={this.state.player.TeamId}
                     placeholder="Team Name"
                     aria-label="Team Name"
                     aria-describedby="basic-addon1"
@@ -138,7 +138,7 @@ class Schedule extends React.Component {
 }
 
 
-export default Schedule;
+export default UpdateSchedule;
 
 
 

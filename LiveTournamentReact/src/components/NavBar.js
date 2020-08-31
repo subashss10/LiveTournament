@@ -1,5 +1,6 @@
 import React from 'react';
-import {Navbar,Nav,Form,FormControl,Button,Jumbotron,NavDropdown} from 'react-bootstrap';
+import {Navbar,Nav,Form,FormControl,Button,Jumbotron,NavDropdown,NavItem} from 'react-bootstrap';
+import { Link } from '@version/react-router-v3';
 import { GoogleLogin,GoogleLogout } from 'react-google-login';
 import Teams from './Teams/Teams';
 
@@ -16,6 +17,9 @@ class NavBar extends React.Component
             const logout = (response) => {
             console.log(response);
             }
+            const RedirectToSchedule = () => {
+                this.props.history.push('/GetSchedule');
+            }
         return (
             <div className="NavBar">
                 <Jumbotron>
@@ -23,7 +27,7 @@ class NavBar extends React.Component
                         <Navbar.Brand href="#home">LiveTournament</Navbar.Brand>
                         <Nav className="mr-auto">
                             <Nav.Link href="#home">Live Scores</Nav.Link>
-                            <Nav.Link href="#features">Schedule</Nav.Link>
+                            <Nav.Link href="/GetSchedule">Schedule</Nav.Link>
                             <Nav.Link href="#pricing">Archives</Nav.Link>
                             <NavDropdown title="News" onMouseEnter={(e) => document.getElementById("nav-dropdown").click()} onMouseLeave={(e) => document.getElementById("nav-dropdown").click()} id="nav-dropdown">
                                 <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
@@ -65,13 +69,13 @@ class NavBar extends React.Component
                                 onFailure={responseGoogle}
                                 cookiePolicy={'single_host_origin'}
                             />
-                            {/* <GoogleLogout
+                            <GoogleLogout
                             clientId="939678263258-ohvm8sbripnn4acjevrka1ucmfejorm7.apps.googleusercontent.com"
                             buttonText="Logout"
                             onLogoutSuccess={logout}
                             onFailure={logout} 
                             disabled={false}
-                            ></GoogleLogout> */}
+                            ></GoogleLogout>
                         </Form>
                     </Navbar>
                 </Jumbotron>

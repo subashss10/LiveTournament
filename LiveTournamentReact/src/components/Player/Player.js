@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row,Col, Jumbotron,Form ,Image} from 'react-bootstrap';
+import '../MyTeam/MyTeam.scss';
 import axios from 'axios';
 import { MdThumbsUpDown } from 'react-icons/md';
 // import { Link } from '@version/react-router-v3';
@@ -30,9 +31,11 @@ class Player extends React.Component {
             <Col xs={6}><Jumbotron><Container>
                 <Row>
                     <Col xs lg="">
-                        <Image src="D:/Projects/ReactJs/my-app/src/images/countries/india.png" rounded />
+                    <Image className="playerimg" src={'./images/players/' + this.props.player.LogoPath} rounded />
+                    
                     </Col>
                 </Row>
+                <br></br>
                 <Row>
                     <Col xs="4"><Form.Label>Name</Form.Label></Col>
                     <Col xs="8"><Form.Label >{this.props.player.PlayerName}</Form.Label></Col>
