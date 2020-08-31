@@ -43,9 +43,19 @@
   	<description></description>
   	<servlet-class>com.vir.player.Player</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Verifier</servlet-name>
+  	<display-name>Verifier</display-name>
+  	<description></description>
+  	<servlet-class>com.vir.verifier.Verifier</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Player</servlet-name>
   	<url-pattern>/Player</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Verifier</servlet-name>
+  	<url-pattern>/Verifier</url-pattern>
   </servlet-mapping>
   
   

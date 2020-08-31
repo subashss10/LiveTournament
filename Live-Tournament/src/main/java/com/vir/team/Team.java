@@ -19,13 +19,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.vir.verifier.Verifier;
 
 /**
  * Servlet implementation class Team
  */
 
 @WebServlet("/team/*")
-public class Team extends HttpServlet {
+public class Team extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	class TeamModel
@@ -229,16 +230,30 @@ public class Team extends HttpServlet {
 		try {
 			
 			Enumeration<String> headerNames = request.getHeaderNames();
+			String tokenId = null;
 
 		    if (headerNames != null) {
 //		            while (headerNames.hasMoreElements()) {
 //		                    System.out.println("Header: " + request.getHeader(headerNames.nextElement()));
 //		            }
 		    	
-		    	String tokenid = request.getHeader("Authorization");
-		    	System.out.println(tokenid);
+		    	tokenId = request.getHeader("Authorization");
+		    	System.out.println(tokenId);
 		    }
-			
+		boolean isValidUser = Verifier.verifyToken(tokenId);
+		if(isValidUser == false)
+		{
+			try
+			{
+				throw new Exception("Invalid User"); 
+			}catch (Exception ex) 
+	        { 
+//	            System.out.println("Caught"); 
+	  
+	            // Print the message from MyException object 
+	            System.out.println(ex.getMessage()); 
+	        } 
+		}
 		Connection con = connection();
 		String pathInfo = request.getPathInfo();
 		PrintWriter out = response.getWriter();

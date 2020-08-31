@@ -42,8 +42,9 @@ public class Player extends HttpServlet {
 		public int CreatedBy;
 		public Date CreatedOn;
 		public boolean isDeleted;
+		public String LogoPath;
 		
-		public PlayerModel(int Id,String PlayerName,Date DOB,String BattingStyle,String BowlingStyle,int CreatedBy, Date CreatedOn, int TeamId, int PlayerRoleId,boolean isDeleted)
+		public PlayerModel(int Id,String PlayerName,Date DOB,String BattingStyle,String BowlingStyle,int CreatedBy, Date CreatedOn, int TeamId, int PlayerRoleId,boolean isDeleted, String LogoPath)
 		{
 			this.Id = Id;
 			this.PlayerName = PlayerName;
@@ -55,6 +56,7 @@ public class Player extends HttpServlet {
 			this.TeamId = TeamId;
 			this.PlayerRoleId = PlayerRoleId;
 			this.isDeleted = isDeleted;
+			this.LogoPath = LogoPath;
 		}
 	}
 	
@@ -121,9 +123,10 @@ public class Player extends HttpServlet {
 				int CreatedBy = rs.getInt("CreatedBy");
 		        Date CreatedOn = rs.getTimestamp("CreatedOn");
 		        boolean isDeleted = false;
+		        String LogoPath = rs.getString("LogoPath");
 		        
 		        //System.out.format("%d, %s, %s, %d, %s\n",Id, TeamName, TeamDescription, CreatedBy, CreatedOn);
-		        player = new PlayerModel(Id,PlayerName, DOB, BattingStyle, BowlingStyle, CreatedBy,  CreatedOn,TeamId,PlayerRoleId,isDeleted);
+		        player = new PlayerModel(Id,PlayerName, DOB, BattingStyle, BowlingStyle, CreatedBy,  CreatedOn,TeamId,PlayerRoleId,isDeleted,LogoPath);
 		        playerList.add(player);
 		            
 		    }
@@ -166,7 +169,8 @@ public class Player extends HttpServlet {
 			int PlayerRoleId = rs.getInt("PlayerRoleId");
 	        Date CreatedOn = rs.getTimestamp("CreatedOn");
 	        boolean isDeleted = false;
-	        player = new PlayerModel(Integer.parseInt(Id),PlayerName, DOB, BattingStyle, BowlingStyle, CreatedBy,  CreatedOn,TeamId,PlayerRoleId,isDeleted);
+	        String LogoPath = rs.getString("LogoPath");
+	        player = new PlayerModel(Integer.parseInt(Id),PlayerName, DOB, BattingStyle, BowlingStyle, CreatedBy,  CreatedOn,TeamId,PlayerRoleId,isDeleted,LogoPath);
 	        
 	        
 	    }
@@ -317,7 +321,8 @@ public class Player extends HttpServlet {
 			int PlayerRoleId = rs.getInt("PlayerRoleId");
 	        Date CreatedOn = rs.getTimestamp("CreatedOn");
 	        boolean isDeleted = false;
-	        player = new PlayerModel(Integer.parseInt(Id),PlayerName, DOB, BattingStyle, BowlingStyle, CreatedBy,  CreatedOn,TeamId,PlayerRoleId,isDeleted);
+	        String LogoPath = rs.getString("LogoPath");
+	        player = new PlayerModel(Integer.parseInt(Id),PlayerName, DOB, BattingStyle, BowlingStyle, CreatedBy,  CreatedOn,TeamId,PlayerRoleId,isDeleted,LogoPath);
 	        
 	        
 	    }
